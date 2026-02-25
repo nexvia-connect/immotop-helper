@@ -1,9 +1,11 @@
 // ==UserScript==
 // @name         Immotop helper
 // @namespace    http://tampermonkey.net/
-// @version      6.3
+// @version      6.4
 // @description  Force highlight specific Immotop listings, find Nexvia links, and survive aggressive filters
 // @match        https://pro.immotop.lu/*
+// @updateURL    https://raw.githubusercontent.com/nexvia-connect/immotop-helper/main/immotop-helper-script.user.js
+// @downloadURL  https://raw.githubusercontent.com/nexvia-connect/immotop-helper/main/immotop-helper-script.user.js
 // @grant        none
 // ==/UserScript==
 
