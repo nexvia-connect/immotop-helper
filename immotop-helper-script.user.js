@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Immotop helper
 // @namespace    http://tampermonkey.net/
-// @version      6.2
+// @version      6.3
 // @description  Force highlight specific Immotop listings, find Nexvia links, and survive aggressive filters
 // @match        https://pro.immotop.lu/*
 // @grant        none
@@ -89,7 +89,11 @@
         const closeBtn = document.getElementById('immo-popup-close');
         closeBtn.onmouseover = () => closeBtn.style.color = '#fff';
         closeBtn.onmouseout = () => closeBtn.style.color = '#888';
-        closeBtn.onclick = () => popup.remove();
+        closeBtn.onclick = () => {
+            popup.remove();
+            findId = null; // Clear the active variable
+            sessionStorage.removeItem('immotop_find_id'); // Clear it from memory completely
+        };
 
         const copyBtn = document.getElementById('immo-popup-copy');
         copyBtn.onclick = () => {
@@ -158,6 +162,7 @@
                 }
             }
 
+            // By setting findId = null on close, this block gets skipped on future passes
             if (findId) {
                 const desc = container.querySelector('.ad_desc');
                 if (desc && desc.textContent.includes(`https://www.nexvia.lu/fr/buy/detail/${findId}`)) {
